@@ -19,7 +19,7 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg" />
-            <span className="font-bold text-xl">EDUC-A-THON 2.0</span>
+            <span className="font-bold text-xl">EduAI</span>
           </div>
 
           {/* Desktop Navigation */}
@@ -31,10 +31,16 @@ const Navigation = () => {
               Features
             </button>
             <button
-              onClick={() => scrollToSection("how-it-works")}
+              onClick={() => scrollToSection("document-upload")}
               className="text-foreground hover:text-primary transition-colors"
             >
-              How It Works
+              Document Upload
+            </button>
+            <button
+              onClick={() => scrollToSection("faq")}
+              className="text-foreground hover:text-primary transition-colors"
+            >
+              FAQ
             </button>
             <button
               onClick={() => scrollToSection("impact")}
@@ -42,13 +48,7 @@ const Navigation = () => {
             >
               Impact
             </button>
-            <button
-              onClick={() => scrollToSection("team")}
-              className="text-foreground hover:text-primary transition-colors"
-            >
-              Team
-            </button>
-            <Button onClick={() => scrollToSection("contact")}>Get Started</Button>
+            <Button onClick={() => scrollToSection("document-upload")}>Try It Now</Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -71,10 +71,16 @@ const Navigation = () => {
               Features
             </button>
             <button
-              onClick={() => scrollToSection("how-it-works")}
+              onClick={() => scrollToSection("document-upload")}
               className="block w-full text-left px-4 py-2 hover:bg-muted rounded-lg transition-colors"
             >
-              How It Works
+              Document Upload
+            </button>
+            <button
+              onClick={() => scrollToSection("faq")}
+              className="block w-full text-left px-4 py-2 hover:bg-muted rounded-lg transition-colors"
+            >
+              FAQ
             </button>
             <button
               onClick={() => scrollToSection("impact")}
@@ -82,14 +88,8 @@ const Navigation = () => {
             >
               Impact
             </button>
-            <button
-              onClick={() => scrollToSection("team")}
-              className="block w-full text-left px-4 py-2 hover:bg-muted rounded-lg transition-colors"
-            >
-              Team
-            </button>
-            <Button className="w-full" onClick={() => scrollToSection("contact")}>
-              Get Started
+            <Button className="w-full" onClick={() => scrollToSection("document-upload")}>
+              Try It Now
             </Button>
           </div>
         )}

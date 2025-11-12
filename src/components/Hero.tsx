@@ -26,32 +26,32 @@ const Hero = () => {
             </div>
             
             <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
-              Empowering Students Through{" "}
-              <span className="gradient-text">AI-Driven Education</span>
+              Transform Your{" "}
+              <span className="gradient-text">Educational Journey</span>
             </h1>
             
             <p className="text-xl text-muted-foreground leading-relaxed">
-              Breaking language barriers and simplifying exam, scholarship, and admission processes 
-              for students across India with intelligent multilingual support.
+              AI-powered platform helping students navigate scholarships, exams, and admissions 
+              with intelligent multilingual support and instant guidance.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
                 size="lg"
                 className="text-lg group"
-                onClick={() => scrollToSection("features")}
+                onClick={() => scrollToSection("document-upload")}
               >
-                Explore Features
+                Try It Now
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button
                 size="lg"
                 variant="outline"
                 className="text-lg"
-                onClick={() => scrollToSection("how-it-works")}
+                onClick={() => scrollToSection("faq")}
               >
                 <MessageSquare className="mr-2 w-5 h-5" />
-                How It Works
+                Ask Questions
               </Button>
             </div>
             
@@ -77,7 +77,7 @@ const Hero = () => {
             <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-3xl blur-3xl" />
             <img
               src={heroImage}
-              alt="Students using EDUC-A-THON platform for learning"
+              alt="Students using AI-powered educational platform"
               className="relative rounded-3xl shadow-2xl w-full h-auto animate-float"
             />
           </div>

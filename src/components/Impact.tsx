@@ -36,10 +36,10 @@ const Impact = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl lg:text-5xl font-bold mb-4">
-            Creating <span className="gradient-text">Real Impact</span>
+            Making a <span className="gradient-text">Real Difference</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Transforming educational accessibility and empowering millions of students across India
+            Empowering students with accessible, AI-driven educational support
           </p>
         </div>
 

@@ -11,10 +11,10 @@ const Footer = () => {
           <div>
             <div className="flex items-center space-x-2 mb-4">
               <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg" />
-              <span className="font-bold text-xl">EDUC-A-THON 2.0</span>
+              <span className="font-bold text-xl">EduAI</span>
             </div>
             <p className="text-muted-foreground mb-4">
-              Empowering students through AI-driven multilingual education assistance.
+              AI-powered educational platform helping students navigate their academic journey.
             </p>
             <div className="flex gap-3">
               <Button variant="outline" size="icon" className="rounded-full">
@@ -39,18 +39,18 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#how-it-works" className="text-muted-foreground hover:text-primary transition-colors">
-                  How It Works
+                <a href="#document-upload" className="text-muted-foreground hover:text-primary transition-colors">
+                  Document Upload
+                </a>
+              </li>
+              <li>
+                <a href="#faq" className="text-muted-foreground hover:text-primary transition-colors">
+                  FAQ
                 </a>
               </li>
               <li>
                 <a href="#impact" className="text-muted-foreground hover:text-primary transition-colors">
                   Impact
-                </a>
-              </li>
-              <li>
-                <a href="#team" className="text-muted-foreground hover:text-primary transition-colors">
-                  Team
                 </a>
               </li>
             </ul>
@@ -98,7 +98,7 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-border text-center text-muted-foreground text-sm">
-          <p>© 2025 EDUC-A-THON 2.0 by Team Bitbees. All rights reserved.</p>
+          <p>© 2025 EduAI. All rights reserved.</p>
         </div>
       </div>
     </footer>

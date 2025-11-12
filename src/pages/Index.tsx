@@ -2,9 +2,11 @@ import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
 import HowItWorks from "@/components/HowItWorks";
+import DocumentUpload from "@/components/DocumentUpload";
+import SmartFAQ from "@/components/SmartFAQ";
 import Impact from "@/components/Impact";
-import Team from "@/components/Team";
 import Footer from "@/components/Footer";
+import Chatbot from "@/components/Chatbot";
 
 const Index = () => {
   return (
@@ -13,11 +15,13 @@ const Index = () => {
       <main>
         <Hero />
         <Features />
+        <DocumentUpload />
+        <SmartFAQ />
         <HowItWorks />
         <Impact />
-        <Team />
       </main>
       <Footer />
+      <Chatbot />
     </div>
   );
 };

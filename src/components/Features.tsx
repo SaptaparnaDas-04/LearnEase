@@ -71,10 +71,10 @@ const Features = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl lg:text-5xl font-bold mb-4">
-            Powerful Features for <span className="gradient-text">Every Student</span>
+            Powerful AI Features for <span className="gradient-text">Every Student</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Our comprehensive suite of AI-powered tools helps students navigate complex educational processes with ease
+            Comprehensive suite of intelligent tools to simplify your educational journey
           </p>
         </div>
 
