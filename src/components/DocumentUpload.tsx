@@ -1,31 +1,71 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { FileText, Upload, Loader2, CheckCircle2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
+import { useNavigate } from "react-router-dom";
+import { extractTextFromPDF } from "@/utils/pdfParser";
+import type { User } from "@supabase/supabase-js";
 
 const DocumentUpload = () => {
   const [text, setText] = useState("");
   const [analysis, setAnalysis] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+    });
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
+      setUser(session?.user ?? null);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      const content = event.target?.result as string;
+    try {
+      setIsProcessing(true);
+      let content = "";
+
+      if (file.type === "application/pdf") {
+        content = await extractTextFromPDF(file);
+      } else {
+        // For text files
+        const reader = new FileReader();
+        content = await new Promise<string>((resolve) => {
+          reader.onload = (event) => {
+            resolve(event.target?.result as string);
+          };
+          reader.readAsText(file);
+        });
+      }
+
       setText(content);
       toast({
         title: "File uploaded",
         description: "Document text has been extracted. Click 'Analyze' to process it.",
       });
-    };
-    reader.readAsText(file);
+    } catch (error) {
+      console.error("File upload error:", error);
+      toast({
+        title: "Error",
+        description: "Failed to extract text from file. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsProcessing(false);
+    }
   };
 
   const analyzeDocument = async () => {
@@ -35,6 +75,16 @@ const DocumentUpload = () => {
         description: "Please upload a file or paste text first.",
         variant: "destructive",
       });
+      return;
+    }
+
+    if (!user) {
+      toast({
+        title: "Authentication required",
+        description: "Please sign in to analyze documents.",
+        variant: "destructive",
+      });
+      navigate("/auth");
       return;
     }
 
@@ -59,6 +109,14 @@ const DocumentUpload = () => {
 
       const data = await response.json();
       setAnalysis(data.analysis);
+
+      // Save to database
+      await supabase.from('documents').insert({
+        title: text.substring(0, 50) + "...",
+        content: text,
+        user_id: user.id,
+        processed: true
+      });
       
       toast({
         title: "Analysis complete",
@@ -105,10 +163,11 @@ const DocumentUpload = () => {
                 <Upload className="h-8 w-8 mx-auto mb-2 text-muted-foreground" />
                 <Input
                   type="file"
-                  accept=".txt,.doc,.docx"
+                  accept=".txt,.doc,.docx,.pdf,application/pdf"
                   onChange={handleFileUpload}
                   className="hidden"
                   id="file-upload"
+                  disabled={isProcessing}
                 />
                 <label
                   htmlFor="file-upload"

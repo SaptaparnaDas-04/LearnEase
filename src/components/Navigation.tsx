@@ -1,9 +1,39 @@
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { Menu, X, LogOut, User } from "lucide-react";
+import { useState, useEffect } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { useNavigate } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
+import type { User as SupabaseUser } from "@supabase/supabase-js";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [user, setUser] = useState<SupabaseUser | null>(null);
+  const navigate = useNavigate();
+  const { toast } = useToast();
+
+  useEffect(() => {
+    // Get initial session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+    });
+
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
+      setUser(session?.user ?? null);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    toast({
+      title: "Signed out",
+      description: "You've been successfully signed out.",
+    });
+    navigate("/auth");
+  };
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -48,7 +78,26 @@ const Navigation = () => {
             >
               Impact
             </button>
-            <Button onClick={() => scrollToSection("document-upload")}>Try It Now</Button>
+          </div>
+
+          {/* Auth Section */}
+          <div className="hidden md:flex items-center gap-4">
+            {user ? (
+              <>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <User className="h-4 w-4" />
+                  <span className="max-w-[150px] truncate">{user.email}</span>
+                </div>
+                <Button variant="outline" size="sm" onClick={handleSignOut}>
+                  <LogOut className="mr-2 h-4 w-4" />
+                  Sign Out
+                </Button>
+              </>
+            ) : (
+              <Button variant="default" size="sm" onClick={() => navigate("/auth")}>
+                Sign In
+              </Button>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -88,9 +137,25 @@ const Navigation = () => {
             >
               Impact
             </button>
-            <Button className="w-full" onClick={() => scrollToSection("document-upload")}>
-              Try It Now
-            </Button>
+            
+            <div className="pt-4 border-t mt-4">
+              {user ? (
+                <>
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3 px-4">
+                    <User className="h-4 w-4" />
+                    <span className="truncate">{user.email}</span>
+                  </div>
+                  <Button variant="outline" className="w-full" onClick={handleSignOut}>
+                    <LogOut className="mr-2 h-4 w-4" />
+                    Sign Out
+                  </Button>
+                </>
+              ) : (
+                <Button className="w-full" onClick={() => { navigate("/auth"); setIsOpen(false); }}>
+                  Sign In
+                </Button>
+              )}
+            </div>
           </div>
         )}
       </div>

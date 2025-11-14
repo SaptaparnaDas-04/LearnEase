@@ -20,18 +20,21 @@ export type Database = {
           id: string
           title: string | null
           updated_at: string
+          user_id: string | null
         }
         Insert: {
           created_at?: string
           id?: string
           title?: string | null
           updated_at?: string
+          user_id?: string | null
         }
         Update: {
           created_at?: string
           id?: string
           title?: string | null
           updated_at?: string
+          user_id?: string | null
         }
         Relationships: []
       }
@@ -75,6 +78,7 @@ export type Database = {
           id: string
           processed: boolean | null
           title: string
+          user_id: string | null
         }
         Insert: {
           content?: string | null
@@ -83,6 +87,7 @@ export type Database = {
           id?: string
           processed?: boolean | null
           title: string
+          user_id?: string | null
         }
         Update: {
           content?: string | null
@@ -91,6 +96,7 @@ export type Database = {
           id?: string
           processed?: boolean | null
           title?: string
+          user_id?: string | null
         }
         Relationships: []
       }
@@ -118,6 +124,30 @@ export type Database = {
           id?: string
           question?: string
           views?: number | null
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          full_name: string | null
+          id: string
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          full_name?: string | null
+          id: string
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          updated_at?: string
         }
         Relationships: []
       }

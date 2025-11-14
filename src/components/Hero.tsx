@@ -39,19 +39,21 @@ const Hero = () => {
               <Button
                 size="lg"
                 className="text-lg group"
-                onClick={() => scrollToSection("document-upload")}
+                asChild
               >
-                Try It Now
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <a href="/auth">
+                  Get Started
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </a>
               </Button>
               <Button
                 size="lg"
                 variant="outline"
                 className="text-lg"
-                onClick={() => scrollToSection("faq")}
+                onClick={() => scrollToSection("features")}
               >
                 <MessageSquare className="mr-2 w-5 h-5" />
-                Ask Questions
+                Learn More
               </Button>
             </div>
             
