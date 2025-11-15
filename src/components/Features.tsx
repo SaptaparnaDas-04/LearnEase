@@ -6,8 +6,11 @@ import {
   HelpCircle, 
   Bell, 
   Accessibility, 
-  Languages 
+  Languages,
+  Volume2,
+  BarChart
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import chatbotImage from "@/assets/feature-chatbot.jpg";
 import ocrImage from "@/assets/feature-ocr.jpg";
 import pathwayImage from "@/assets/feature-pathway.jpg";
@@ -20,6 +23,7 @@ const features = [
     description: "Converts complex scholarship regulations and exam guidelines into easy-to-understand conversational language.",
     color: "primary",
     image: chatbotImage,
+    path: "/translator",
   },
   {
     icon: MessageSquare,
@@ -27,6 +31,7 @@ const features = [
     description: "AI-powered support in multiple Indian languages, providing instant answers to student questions 24/7.",
     color: "secondary",
     image: chatbotImage,
+    path: "/chat",
   },
   {
     icon: FileText,
@@ -34,6 +39,7 @@ const features = [
     description: "Upload forms or official documents and receive step-by-step instructions in your preferred language.",
     color: "accent",
     image: ocrImage,
+    path: "/document-reader",
   },
   {
     icon: Route,
@@ -41,31 +47,37 @@ const features = [
     description: "Interactive, personalized roadmaps for scholarships and exams with deadlines and document checklists.",
     color: "primary",
     image: pathwayImage,
+    path: "/pathway",
   },
   {
-    icon: HelpCircle,
-    title: "Smart FAQ System",
-    description: "Ask questions in natural language about rules, eligibility, results, and deadlines with instant AI responses.",
+    icon: Volume2,
+    title: "Text to Speech",
+    description: "Convert text to natural-sounding speech in multiple languages for better accessibility and learning.",
     color: "secondary",
-    image: chatbotImage,
+    image: accessibilityImage,
+    path: "/text-to-speech",
   },
   {
-    icon: Bell,
-    title: "Reminders & Tracking",
-    description: "Never miss a deadline with automated alerts for application steps, exam schedules, and more.",
+    icon: BarChart,
+    title: "Assess Your Work",
+    description: "Get instant AI-powered feedback on your assignments, essays, and projects with detailed suggestions.",
     color: "accent",
     image: pathwayImage,
+    path: "/assess-work",
   },
   {
     icon: Accessibility,
     title: "Accessibility Features",
-    description: "Text-to-speech, font adjustments, and local language support for learners with disabilities.",
+    description: "Comprehensive accessibility tools including screen readers, font adjustments, and local language support.",
     color: "primary",
     image: accessibilityImage,
+    path: "/text-to-speech",
   },
 ];
 
 const Features = () => {
+  const navigate = useNavigate();
+
   return (
     <section id="features" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
@@ -82,8 +94,9 @@ const Features = () => {
           {features.map((feature, index) => (
             <Card
               key={index}
-              className="card-hover border-none shadow-lg overflow-hidden group"
+              className="card-hover border-none shadow-lg overflow-hidden group cursor-pointer"
               style={{ animationDelay: `${index * 100}ms` }}
+              onClick={() => navigate(feature.path)}
             >
               <div className="h-48 overflow-hidden relative">
                 <img
