@@ -40,5 +40,11 @@ Team info:
 2. Saptaparna Das
 3. Kousiki Baral
 4. Oindrila Hazra
+   
 ## What technologies are used for this project?
+- Vite
+- TypeScript
+- React
+- shadcn-ui
+- Tailwind CSS
 
