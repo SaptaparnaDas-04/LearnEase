@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Auth from "./pages/Auth";
-import Translator from "./pages/Translator";
+import Translator from "./pages/TranslatorApp";
 import Chat from "./pages/Chat";
 import DocumentReader from "./pages/DocumentReader";
 import Pathway from "./pages/Pathway";
