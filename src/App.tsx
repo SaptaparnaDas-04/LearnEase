@@ -6,6 +6,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Auth from "./pages/Auth";
+import Translator from "./pages/Translator";
+import Chat from "./pages/Chat";
+import DocumentReader from "./pages/DocumentReader";
+import Pathway from "./pages/Pathway";
+import TextToSpeech from "./pages/TextToSpeech";
+import AssessWork from "./pages/AssessWork";
 
 const queryClient = new QueryClient();
 
@@ -18,6 +24,12 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/auth" element={<Auth />} />
+          <Route path="/translator" element={<Translator />} />
+          <Route path="/chat" element={<Chat />} />
+          <Route path="/document-reader" element={<DocumentReader />} />
+          <Route path="/pathway" element={<Pathway />} />
+          <Route path="/text-to-speech" element={<TextToSpeech />} />
+          <Route path="/assess-work" element={<AssessWork />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

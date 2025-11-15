@@ -55,28 +55,34 @@ const Navigation = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <button
-              onClick={() => scrollToSection("features")}
+              onClick={() => navigate("/")}
               className="text-foreground hover:text-primary transition-colors"
             >
-              Features
+              Home
             </button>
             <button
-              onClick={() => scrollToSection("document-upload")}
+              onClick={() => navigate("/translator")}
               className="text-foreground hover:text-primary transition-colors"
             >
-              Document Upload
+              Translator
             </button>
             <button
-              onClick={() => scrollToSection("faq")}
+              onClick={() => navigate("/chat")}
               className="text-foreground hover:text-primary transition-colors"
             >
-              FAQ
+              Chat
             </button>
             <button
-              onClick={() => scrollToSection("impact")}
+              onClick={() => navigate("/document-reader")}
               className="text-foreground hover:text-primary transition-colors"
             >
-              Impact
+              OCR
+            </button>
+            <button
+              onClick={() => navigate("/pathway")}
+              className="text-foreground hover:text-primary transition-colors"
+            >
+              Pathway
             </button>
           </div>
 
@@ -114,28 +120,34 @@ const Navigation = () => {
         {isOpen && (
           <div className="md:hidden py-4 space-y-4 animate-fade-in">
             <button
-              onClick={() => scrollToSection("features")}
+              onClick={() => { navigate("/"); setIsOpen(false); }}
               className="block w-full text-left px-4 py-2 hover:bg-muted rounded-lg transition-colors"
             >
-              Features
+              Home
             </button>
             <button
-              onClick={() => scrollToSection("document-upload")}
+              onClick={() => { navigate("/translator"); setIsOpen(false); }}
               className="block w-full text-left px-4 py-2 hover:bg-muted rounded-lg transition-colors"
             >
-              Document Upload
+              Translator
             </button>
             <button
-              onClick={() => scrollToSection("faq")}
+              onClick={() => { navigate("/chat"); setIsOpen(false); }}
               className="block w-full text-left px-4 py-2 hover:bg-muted rounded-lg transition-colors"
             >
-              FAQ
+              Chat
             </button>
             <button
-              onClick={() => scrollToSection("impact")}
+              onClick={() => { navigate("/document-reader"); setIsOpen(false); }}
               className="block w-full text-left px-4 py-2 hover:bg-muted rounded-lg transition-colors"
             >
-              Impact
+              OCR
+            </button>
+            <button
+              onClick={() => { navigate("/pathway"); setIsOpen(false); }}
+              className="block w-full text-left px-4 py-2 hover:bg-muted rounded-lg transition-colors"
+            >
+              Pathway
             </button>
             
             <div className="pt-4 border-t mt-4">
