@@ -35,7 +35,7 @@ Features: Plain Language Translator Converts complex scholarship/exam rules into
 
 6. Clean and Responsive UI: Built with shadcn components and TailwindCSS.
    
-Team info:
+## Team info:
 1. Samiksha Bajoria
 2. Saptaparna Das
 3. Kousiki Baral
