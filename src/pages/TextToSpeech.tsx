@@ -39,9 +39,15 @@ const TextToSpeech = () => {
 
     setIsGenerating(true);
     try {
-      // Using browser's built-in speech synthesis for now
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = language;
+      
+      // Get available voices and select the best one for the language
+      const voices = window.speechSynthesis.getVoices();
+      const languageVoice = voices.find(voice => voice.lang.startsWith(language.split('-')[0]));
+      if (languageVoice) {
+        utterance.voice = languageVoice;
+      }
       
       utterance.onend = () => {
         setIsPlaying(false);

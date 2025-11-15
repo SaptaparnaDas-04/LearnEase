@@ -58,20 +58,20 @@ const features = [
     path: "/text-to-speech",
   },
   {
-    icon: BarChart,
-    title: "Assess Your Work",
-    description: "Get instant AI-powered feedback on your assignments, essays, and projects with detailed suggestions.",
+    icon: Bell,
+    title: "Reminder & Notifications",
+    description: "Smart reminders for deadlines, exam dates, and important tasks with customizable notifications.",
     color: "accent",
     image: pathwayImage,
-    path: "/assess-work",
+    path: "/reminders",
   },
   {
-    icon: Accessibility,
-    title: "Accessibility Features",
-    description: "Comprehensive accessibility tools including screen readers, font adjustments, and local language support.",
+    icon: HelpCircle,
+    title: "Smart FAQs",
+    description: "AI-powered instant answers to your questions about scholarships, exams, and educational guidance.",
     color: "primary",
     image: accessibilityImage,
-    path: "/text-to-speech",
+    path: "/#faq",
   },
 ];
 
@@ -96,7 +96,14 @@ const Features = () => {
               key={index}
               className="card-hover border-none shadow-lg overflow-hidden group cursor-pointer"
               style={{ animationDelay: `${index * 100}ms` }}
-              onClick={() => navigate(feature.path)}
+              onClick={() => {
+                if (feature.path.startsWith('/#')) {
+                  const element = document.querySelector(feature.path.substring(1));
+                  element?.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                  navigate(feature.path);
+                }
+              }}
             >
               <div className="h-48 overflow-hidden relative">
                 <img

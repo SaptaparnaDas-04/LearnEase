@@ -11,7 +11,7 @@ import Chat from "./pages/Chat";
 import DocumentReader from "./pages/DocumentReader";
 import Pathway from "./pages/Pathway";
 import TextToSpeech from "./pages/TextToSpeech";
-import AssessWork from "./pages/AssessWork";
+import Reminders from "./pages/Reminders";
 
 const queryClient = new QueryClient();
 
@@ -29,7 +29,7 @@ const App = () => (
           <Route path="/document-reader" element={<DocumentReader />} />
           <Route path="/pathway" element={<Pathway />} />
           <Route path="/text-to-speech" element={<TextToSpeech />} />
-          <Route path="/assess-work" element={<AssessWork />} />
+          <Route path="/reminders" element={<Reminders />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
